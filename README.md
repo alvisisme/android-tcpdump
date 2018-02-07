@@ -1,6 +1,6 @@
 # android-tcpdump
 
-编译tcpdump到android系统
+编译tcpdump到android(arm64)系统
 
 ## 测试环境
 
