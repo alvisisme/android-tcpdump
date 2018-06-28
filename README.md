@@ -1,6 +1,8 @@
 # android-tcpdump
 
-编译tcpdump到android(arm64)系统
+[![Build Status](https://travis-ci.org/alvisisme/android-tcpdump.svg?branch=master)](https://travis-ci.org/alvisisme/android-tcpdump)
+
+编译 tcpdump 为 Android 系统 arm64-v8a 架构
 
 ## 测试环境
 
