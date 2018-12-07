@@ -1,7 +1,12 @@
 all: env build
 
 env:
-	docker build -t android-tcpdump-build .
+	docker-compose build
 
 build:
-	docker run --rm -v `pwd`/out:/home/out android-tcpdump-build
+	docker-compose run android-build-tcpdump
+
+dist: build/sbin/tcpdump
+	cp build/sbin/tcpdump bin/tcpdump
+
+.PHONY: env build dist

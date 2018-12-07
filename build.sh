@@ -1,25 +1,36 @@
 #!/bin/bash
 
+CWD=$PWD
+mkdir -p $CWD/build
+LIBPCAP_VERSION=1.8.1
+TCPDUMP_VERSION=4.9.2
+
 # build libpcap
-wget http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz
-tar xf libpcap-1.8.1.tar.gz
-cd libpcap-1.8.1
+cd $CWD/build
+if [ ! -f libpcap-$LIBPCAP_VERSION.tar.gz ];then
+wget http://www.tcpdump.org/release/libpcap-$LIBPCAP_VERSION.tar.gz
+fi
+if [ -d libpcap-$LIBPCAP_VERSION ];then
+rm -rf libpcap-$LIBPCAP_VERSION
+fi
+tar xf libpcap-$LIBPCAP_VERSION.tar.gz
+cd libpcap-$LIBPCAP_VERSION
 ./configure --host=aarch64-linux --with-pcap=linux ac_cv_linux_vers=2
 make
 make install
-cd ..
+cd $CWD
 
 # build tcpdump
-wget http://www.tcpdump.org/release/tcpdump-4.9.2.tar.gz
-tar xf tcpdump-4.9.2.tar.gz
-cd tcpdump-4.9.2
-./configure --prefix=/home/out --host=aarch64-linux ac_cv_linux_vers=2 --with-crypto=no CFLAGS='-fPIE' LDFLAGS='-fPIE -pie'
+cd $CWD/build
+if [ ! -f tcpdump-$TCPDUMP_VERSION.tar.gz ];then
+wget http://www.tcpdump.org/release/tcpdump-$TCPDUMP_VERSION.tar.gz
+fi
+if [ -d tcpdump-$TCPDUMP_VERSION ];then
+rm -rf build/tcpdump-$TCPDUMP_VERSION
+fi
+tar xf tcpdump-$TCPDUMP_VERSION.tar.gz
+cd tcpdump-$TCPDUMP_VERSION
+./configure --prefix=$CWD/build/ --host=aarch64-linux ac_cv_linux_vers=2 --with-crypto=no CFLAGS='-fPIE' LDFLAGS='-fPIE -pie'
 make
 make install
-cd ..
-
-# clean
-rm -rf libpcap-1.8.1.tar.gz
-rm -rf libpcap-1.8.1
-rm -rf tcpdump-4.9.2.tar.gz
-rm -rf tcpdump-4.9.2
+cd $CWD

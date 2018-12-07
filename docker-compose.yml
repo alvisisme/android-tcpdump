@@ -1,0 +1,9 @@
+version: '2'
+services:
+  android-build-tcpdump:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: android-build-tcpdump
+    volumes:
+      - .:/out
