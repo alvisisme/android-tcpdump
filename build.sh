@@ -2,7 +2,7 @@
 
 CWD=$PWD
 mkdir -p $CWD/build
-LIBPCAP_VERSION=1.8.1
+LIBPCAP_VERSION=1.9.0
 TCPDUMP_VERSION=4.9.2
 
 # build libpcap
