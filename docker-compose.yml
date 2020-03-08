@@ -1,9 +1,7 @@
 version: '2'
 services:
-  android-build-tcpdump:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    image: android-build-tcpdump
+  tcpdump-for-android:
+    build: .
+    image: tcpdump-for-android-arm64-v8a
     volumes:
-      - .:/out
+      - ./build:/build
