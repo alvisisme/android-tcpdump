@@ -1,4 +1,6 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
 
 CWD=$PWD
 mkdir -p $CWD/build
