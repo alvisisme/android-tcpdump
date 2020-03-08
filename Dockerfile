@@ -28,4 +28,4 @@ ENV SYSROOT=/arm64-android-toolchain/sysroot
 COPY build.sh /build.sh
 VOLUME ["/build"]
 
-ENTRYPOINT ["/bin/bash", "/build.sh"]
+CMD ["/bin/bash", "/build.sh"]
